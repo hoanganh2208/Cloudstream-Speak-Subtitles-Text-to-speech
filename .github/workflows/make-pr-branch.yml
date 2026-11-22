@@ -654,8 +654,8 @@ jobs:
           git apply tts.patch
           rm tts.patch
 
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
           git add -A
           git status --short
           git commit -F - <<'MSG_EOF'
@@ -687,7 +687,7 @@ jobs:
             echo
             echo "1. Open this link to create the Pull Request:"
             echo
-            echo "https://github.com/recloudstream/cloudstream/compare/master...${{ github.repository_owner }}:subtitle-tts?expand=1"
+            echo "https://github.com/recloudstream/cloudstream/compare/master...${GITHUB_REPOSITORY_OWNER}:subtitle-tts?expand=1"
             echo
             echo "2. Paste the title and description from the suggestion below (fill in the [FILL IN] parts yourself)."
             echo
@@ -713,4 +713,3 @@ jobs:
             echo "Testing: [FILL IN: device, Android version, what you watched, which settings you tried]"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
-
